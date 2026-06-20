@@ -1,0 +1,218 @@
+{
+  "BTP044": {
+    "TOW": {
+      "n_trials": 6,
+      "total_reward": 254.8,
+      "avg_response_time_sec": 460.9379942919389
+    },
+    "OFFICER": {
+      "n_trials": 8,
+      "total_reward": 254.89999999999998,
+      "avg_response_time_sec": 194.7029681691874
+    },
+    "TEMP_PARKING": {
+      "n_trials": 7,
+      "total_reward": 175.3,
+      "avg_response_time_sec": 776.6818596649064
+    },
+    "DIVERSION": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    },
+    "SIGNAL_RETIME": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    }
+  },
+  "BTP027": {
+    "TOW": {
+      "n_trials": 3,
+      "total_reward": 63.3,
+      "avg_response_time_sec": 442.386937936508
+    },
+    "OFFICER": {
+      "n_trials": 3,
+      "total_reward": 63.5,
+      "avg_response_time_sec": 177.7370622479627
+    },
+    "TEMP_PARKING": {
+      "n_trials": 2,
+      "total_reward": 30.8,
+      "avg_response_time_sec": 681.4875082625463
+    },
+    "DIVERSION": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    },
+    "SIGNAL_RETIME": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    }
+  },
+  "BTP082": {
+    "TOW": {
+      "n_trials": 9,
+      "total_reward": 316.4,
+      "avg_response_time_sec": 419.1306933877421
+    },
+    "OFFICER": {
+      "n_trials": 5,
+      "total_reward": 201.60000000000002,
+      "avg_response_time_sec": 191.7546061773362
+    },
+    "TEMP_PARKING": {
+      "n_trials": 6,
+      "total_reward": 321.09999999999997,
+      "avg_response_time_sec": 806.0834398385731
+    },
+    "DIVERSION": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    },
+    "SIGNAL_RETIME": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    }
+  },
+  "BTP020": {
+    "TOW": {
+      "n_trials": 1,
+      "total_reward": 48.0,
+      "avg_response_time_sec": 538.0550485669846
+    },
+    "OFFICER": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    },
+    "TEMP_PARKING": {
+      "n_trials": 5,
+      "total_reward": 130.6,
+      "avg_response_time_sec": 756.2636179379809
+    },
+    "DIVERSION": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    },
+    "SIGNAL_RETIME": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    }
+  },
+  "BTP040": {
+    "TOW": {
+      "n_trials": 6,
+      "total_reward": 199.9,
+      "avg_response_time_sec": 450.44368378746367
+    },
+    "OFFICER": {
+      "n_trials": 3,
+      "total_reward": 155.3,
+      "avg_response_time_sec": 211.30202910841095
+    },
+    "TEMP_PARKING": {
+      "n_trials": 6,
+      "total_reward": 236.0,
+      "avg_response_time_sec": 717.3149872562113
+    },
+    "DIVERSION": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    },
+    "SIGNAL_RETIME": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    }
+  },
+  "BTP051": {
+    "TOW": {
+      "n_trials": 6,
+      "total_reward": 199.20000000000002,
+      "avg_response_time_sec": 411.5743497270755
+    },
+    "OFFICER": {
+      "n_trials": 4,
+      "total_reward": 154.2,
+      "avg_response_time_sec": 187.4133022238654
+    },
+    "TEMP_PARKING": {
+      "n_trials": 7,
+      "total_reward": 385.2,
+      "avg_response_time_sec": 700.7236094315202
+    },
+    "DIVERSION": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    },
+    "SIGNAL_RETIME": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    }
+  },
+  "BTP211": {
+    "TOW": {
+      "n_trials": 3,
+      "total_reward": 40.1,
+      "avg_response_time_sec": 469.927890025843
+    },
+    "OFFICER": {
+      "n_trials": 4,
+      "total_reward": 119.2,
+      "avg_response_time_sec": 205.77854501403306
+    },
+    "TEMP_PARKING": {
+      "n_trials": 1,
+      "total_reward": 30.1,
+      "avg_response_time_sec": 683.5680324734064
+    },
+    "DIVERSION": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    },
+    "SIGNAL_RETIME": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    }
+  },
+  "BTP058": {
+    "TOW": {
+      "n_trials": 3,
+      "total_reward": 91.2,
+      "avg_response_time_sec": 475.67658067549195
+    },
+    "OFFICER": {
+      "n_trials": 1,
+      "total_reward": 43.1,
+      "avg_response_time_sec": 172.44055204863486
+    },
+    "TEMP_PARKING": {
+      "n_trials": 1,
+      "total_reward": 62.0,
+      "avg_response_time_sec": 766.8706707504887
+    },
+    "DIVERSION": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    },
+    "SIGNAL_RETIME": {
+      "n_trials": 0,
+      "total_reward": 0.0,
+      "avg_response_time_sec": 0.0
+    }
+  }
+}

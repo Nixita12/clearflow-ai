@@ -1,0 +1,226 @@
+# ClearFlow AI — Master Configuration
+# All values derived from jan_to_may_police_violation dataset (298,450 records)
+
+project:
+  name: ClearFlow AI
+  version: "1.0"
+  city: Bengaluru
+  dataset: jan_to_may_police_violation_anonymized
+
+# ─── YOLO Model ───────────────────────────────────────────────────────────────
+model:
+  weights: yolov8n.pt          # swap to yolov8s.pt for better accuracy on demo
+  confidence_threshold: 0.45
+  iou_threshold: 0.50
+  input_size: 640
+  device: cpu                  # change to "0" for GPU
+  inference_target_ms: 30      # alert if exceeded
+
+  # Vehicle classes from dataset — mapped to COCO/custom YOLO class IDs
+  # Dataset vehicle_type values: SCOOTER, CAR, MOTOR CYCLE, PASSENGER AUTO,
+  #   MAXI-CAB, LGV, GOODS AUTO, MOPED, PRIVATE BUS, VAN, TEMPO, HGV, etc.
+  vehicle_classes:
+    CAR:              [2]          # COCO class 2 = car
+    MOTOR_CYCLE:      [3]          # COCO class 3 = motorcycle
+    SCOOTER:          [3]          # grouped with motorcycle in COCO
+    MOPED:            [3]
+    BUS:              [5]          # COCO class 5 = bus
+    PRIVATE_BUS:      [5]
+    MAXI_CAB:         [5]
+    TRUCK:            [7]          # COCO class 7 = truck
+    LGV:              [7]
+    HGV:              [7]
+    LORRY:            [7]
+    PASSENGER_AUTO:   [2, 7]       # three-wheelers; nearest COCO approximation
+    VAN:              [2]
+
+  # Zone importance weight per vehicle type (used in impact score)
+  # Larger/slower vehicles block more carriageway
+  vehicle_zone_weight:
+    CAR: 1.0
+    SCOOTER: 0.4
+    MOTOR_CYCLE: 0.4
+    MOPED: 0.3
+    PASSENGER_AUTO: 0.8
+    MAXI_CAB: 1.5
+    LGV: 1.8
+    HGV: 2.0
+    PRIVATE_BUS: 2.0
+    BUS: 2.0
+    VAN: 1.2
+    LORRY: 1.9
+    TANKER: 2.0
+    DEFAULT: 1.0
+
+# ─── ByteTrack ────────────────────────────────────────────────────────────────
+tracker:
+  type: bytetrack
+  track_thresh: 0.50
+  track_buffer: 30             # frames to keep lost track alive
+  match_thresh: 0.80
+  min_box_area: 100
+
+# ─── No-Parking Zone Detection ────────────────────────────────────────────────
+parking:
+  stationary_threshold_seconds: 60    # flag after vehicle stops for this long
+  centroid_movement_px: 8             # pixel movement below this = stationary
+  min_frames_stationary: 5            # min consecutive frames before starting timer
+  junction_radius_meters: 50          # buffer around junction GPS coords
+
+# ─── Hotspot Zones (from dataset — top 8 junctions by violation count) ────────
+# Each zone defines: polygon ROI for camera, flow counting line, enforcement priority
+hotspot_zones:
+  - id: BTP051
+    name: "Safina Plaza Junction"
+    police_station: Shivajinagar
+    center_code: 16
+    lat: 12.981212
+    lon: 77.608695
+    violation_count: 15449          # from dataset
+    zone_weight: 1.0                # highest — normalised to 1.0
+    # ROI polygon (pixel coords — set per camera; placeholder values)
+    roi_polygon: [[100,200],[500,200],[500,450],[100,450]]
+    # Virtual counting line for throughput [x1,y1,x2,y2]
+    counting_line: [100, 325, 500, 325]
+
+  - id: BTP082
+    name: "KR Market Junction"
+    police_station: City Market
+    center_code: 28
+    lat: 12.964424
+    lon: 77.577241
+    violation_count: 11538
+    zone_weight: 0.75
+    roi_polygon: [[80,180],[520,180],[520,460],[80,460]]
+    counting_line: [80, 320, 520, 320]
+
+  - id: BTP040
+    name: "Elite Junction"
+    police_station: Upparpet
+    center_code: 3
+    lat: 12.976597
+    lon: 77.576602
+    violation_count: 10718
+    zone_weight: 0.69
+    roi_polygon: [[120,200],[480,200],[480,440],[120,440]]
+    counting_line: [120, 320, 480, 320]
+
+  - id: BTP044
+    name: "Sagar Theatre Junction"
+    police_station: Upparpet
+    center_code: 3
+    lat: 12.974939
+    lon: 77.578896
+    violation_count: 10549
+    zone_weight: 0.68
+    roi_polygon: [[100,190],[500,190],[500,450],[100,450]]
+    counting_line: [100, 320, 500, 320]
+
+  - id: BTP211
+    name: "Central Street Junction"
+    police_station: Shivajinagar
+    center_code: 16
+    lat: 12.983371
+    lon: 77.603454
+    violation_count: 5388
+    zone_weight: 0.35
+    roi_polygon: [[90,200],[510,200],[510,440],[90,440]]
+    counting_line: [90, 320, 510, 320]
+
+  - id: BTP058
+    name: "Subbanna Junction"
+    police_station: Upparpet
+    center_code: 3
+    lat: 12.979022
+    lon: 77.578661
+    violation_count: 5189
+    zone_weight: 0.34
+    roi_polygon: [[100,200],[500,200],[500,440],[100,440]]
+    counting_line: [100, 320, 500, 320]
+
+  - id: BTP027
+    name: "Modi Bridge Junction"
+    police_station: Rajajinagar
+    center_code: 6
+    lat: 12.998897
+    lon: 77.549416
+    violation_count: 4584
+    zone_weight: 0.30
+    roi_polygon: [[80,190],[520,190],[520,450],[80,450]]
+    counting_line: [80, 320, 520, 320]
+
+  - id: BTP020
+    name: "Hosahalli Metro Station"
+    police_station: Vijayanagara
+    center_code: 30
+    lat: 12.974144
+    lon: 77.545294
+    violation_count: 4101
+    zone_weight: 0.27
+    roi_polygon: [[90,200],[510,200],[510,440],[90,440]]
+    counting_line: [90, 320, 510, 320]
+
+# ─── Offence Code Mapping (from dataset offence_code column) ─────────────────
+offence_codes:
+  112: WRONG_PARKING
+  113: NO_PARKING
+  107: PARKING_MAIN_ROAD
+  116: DEFECTIVE_NUMBER_PLATE
+  105: PARKING_ON_FOOTPATH
+  111: PARKING_NEAR_BUSSTOP_SCHOOL_HOSPITAL
+  109: DOUBLE_PARKING
+  104: PARKING_NEAR_ROAD_CROSSING
+  124: OTHER
+
+# ─── Congestion Impact Score Weights ─────────────────────────────────────────
+# Score = (delta_throughput*w1) + (delta_speed*w2) + (zone_weight*w3) + (time_weight*w4)
+impact_score:
+  w_throughput: 0.40
+  w_speed: 0.30
+  w_zone: 0.20
+  w_time: 0.10
+  critical_threshold: 75
+  high_threshold: 50
+  medium_threshold: 25
+
+# ─── Time-of-Day Weights (derived from dataset hourly distribution) ───────────
+# Hour → normalised violation density (peak = 5 AM = 1.0)
+time_of_day_weights:
+  0: 0.64
+  1: 0.50
+  2: 0.73
+  3: 0.75
+  4: 0.85
+  5: 1.00
+  6: 0.79
+  7: 0.43
+  8: 0.25
+  9: 0.09
+  10: 0.02
+  11: 0.02
+  12: 0.01
+  13: 0.00
+  14: 0.00
+  15: 0.00
+  16: 0.01
+  17: 0.02
+  18: 0.06
+  19: 0.31
+  20: 0.35
+  21: 0.58
+  22: 0.67
+  23: 0.67
+
+# ─── Output / Alerting ────────────────────────────────────────────────────────
+output:
+  json_stream: output/violations/stream.jsonl
+  reports_dir: output/reports/
+  alert_webhook: ""             # POST endpoint for real-time alerts
+  data_sent_to_scita: true      # mirrors dataset field
+
+# ─── Baseline Traffic (for Congestion Index calc) ────────────────────────────
+# Measured during clean periods (no active violations in zone)
+baseline:
+  throughput_vehicles_per_min: 12.0   # q_baseline
+  speed_kmh: 28.0                     # v_baseline
+  rolling_window_frames: 300          # frames used to compute rolling baseline

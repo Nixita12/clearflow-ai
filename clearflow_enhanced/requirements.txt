@@ -1,0 +1,17 @@
+# ClearFlow AI — Python dependencies
+# Install: pip install -r requirements.txt
+
+# Core inference (Module A)
+ultralytics>=8.0.0       # YOLOv8 + ByteTrack built-in
+opencv-python-headless>=4.8.0
+
+# Numerical & data
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Config
+pyyaml>=6.0
+
+# Optional: GPU acceleration (uncomment if CUDA available)
+# torch>=2.0.0+cu118
+# torchvision>=0.15.0+cu118
